@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Evento</title>
+  
+  <!-- Fuente Google Sans -->
+  <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
+
+  <style>
+    :root {
+      --pri-red: rgb(224, 0, 24);
+      --pri-dark-red: rgb(180, 0, 18);
+      --bg-gray: #f4f5f7;
+    }
+
+    body {
+      font-family: 'Product Sans', 'Google Sans', Arial, sans-serif;
+      background-color: rgb(224, 0, 24);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      max-width: 480px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #ffffff;
+      color: #000000;
+      text-align: center;
+      padding: 24px 20px 20px 20px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .header-logo {
+      display: block;
+      margin: 0 auto 15px auto;
+      max-width: 100px;
+      height: auto;
+    }
+
+    .header p {
+      margin: 8px 0 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    form {
+      padding: 20px;
+    }
+
+    .footer-logo {
+      display: block;
+      margin: 25px auto 10px auto;
+      max-width: 110px;
+      height: auto;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: 'Product Sans', 'Google Sans', sans-serif;
+      background-color: white;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--pri-red);
+      outline: none;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .date-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .date-row input {
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--pri-red);
+      margin: 18px 0 10px 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--pri-red);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 10px;
+      transition: background 0.2s;
+      font-family: 'Product Sans', 'Google Sans', sans-serif;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--pri-dark-red);
+    }
+
+    /* BOTONES DE REDES SOCIALES */
+    .btn-social {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+      font-family: 'Product Sans', 'Google Sans', sans-serif;
+      text-align: center;
+    }
+
+    .btn-social:hover {
+      opacity: 0.9;
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+    }
+
+    .btn-facebook {
+      background-color: #1877F2;
+    }
+
+    .btn-instagram {
+      background-color: #E4405F;
+    }
+
+    .btn-tiktok {
+      background-color: #000000;
+    }
+
+    .btn-x {
+      background-color: #000000;
+    }
+
+    #mensajeExito {
+      display: none;
+      background: #e6fffa;
+      border: 1px solid #38b2ac;
+      color: #234e52;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="PRI.png" alt="PRI" class="header-logo">
+    <h2>REGISTRO DE EVENTO</h2>
+    <p style="font-size: 13px; color: #555; margin-top: 10px;">
+      Las casillas que tienen asterisco (*) deben ser llenadas obligatoriamente
+    </p>
+  </div>
+
+  <!-- FORMULARIO DE REGISTRO -->
+  <form id="regForm">
+
+    <!-- EVENTO ORGANIZADO POR -->
+    <div class="form-group">
+      <label>Evento organizado por:</label>
+      <select id="sector">
+        <option value="" selected>-- Ninguno / Seleccionar --</option>
+        <option value="CCI">CCI</option>
+        <option value="CNC">CNC</option>
+        <option value="CNOP">CNOP</option>
+        <option value="CROC">CROC</option>
+        <option value="CTM">CTM</option>
+        <option value="Fundación Colosio">Fundación Colosio</option>
+        <option value="Instituto Jesús Reyes Heroles">Instituto Jesús Reyes Heroles</option>
+        <option value="México Avanza">México Avanza</option>
+        <option value="Movimiento PRI.Mx">Movimiento PRI.Mx</option>
+        <option value="MT">MT</option>
+        <option value="ONMPRI">ONMPRI</option>
+        <option value="Partido Revolucionario Institucional">Partido Revolucionario Institucional</option>
+        <option value="Red de Jóvenes por México">Red de Jóvenes por México</option>
+        <option value="Unidad Revolucionaria">Unidad Revolucionaria</option>
+        <option value="Líder Seccional">Líder Seccional</option>
+      </select>
+    </div>
+
+    <!-- NOMBRE DEL EVENTO -->
+    <div class="form-group">
+      <label>Nombre del evento *</label>
+      <input type="text" id="nombreEvento" required placeholder="Ej. Reunión de Trabajo">
+    </div>
+
+    <!-- FECHA DEL EVENTO -->
+    <div class="form-group">
+      <label>Fecha (Día - Mes - Año) *</label>
+      <div class="date-row">
+        <input type="number" id="diaEvento" min="1" max="31" placeholder="Día" required style="flex: 1;">
+        
+        <select id="mesEvento" required style="flex: 2;">
+          <option value="" disabled selected>Mes</option>
+          <option value="Enero">Enero</option>
+          <option value="Febrero">Febrero</option>
+          <option value="Marzo">Marzo</option>
+          <option value="Abril">Abril</option>
+          <option value="Mayo">Mayo</option>
+          <option value="Junio">Junio</option>
+          <option value="Julio">Julio</option>
+          <option value="Agosto">Agosto</option>
+          <option value="Septiembre">Septiembre</option>
+          <option value="Octubre">Octubre</option>
+          <option value="Noviembre">Noviembre</option>
+          <option value="Diciembre">Diciembre</option>
+        </select>
+
+        <input type="number" id="anioEvento" min="2020" max="2030" placeholder="Año" required style="flex: 1.2;">
+      </div>
+    </div>
+
+    <div class="section-title">Datos Personales</div>
+
+    <div class="form-group">
+      <label>Nombre(s) *</label>
+      <input type="text" id="nombres" required placeholder="Ej. Samantha">
+    </div>
+
+    <div class="form-group">
+      <label>Apellido Paterno *</label>
+      <input type="text" id="paterno" required placeholder="Ej. Jiménez">
+    </div>
+
+    <div class="form-group">
+      <label>Apellido Materno</label>
+      <input type="text" id="materno" placeholder="Ej. Alvarado">
+    </div>
+
+    <!-- FECHA DE NACIMIENTO -->
+    <div class="form-group">
+      <label>Fecha de Nacimiento (Día - Mes - Año) *</label>
+      <div class="date-row">
+        <input type="number" id="diaNac" min="1" max="31" placeholder="Día" required style="flex: 1;">
+        
+        <select id="mesNac" required style="flex: 2;">
+          <option value="" disabled selected>Mes</option>
+          <option value="Enero">Enero</option>
+          <option value="Febrero">Febrero</option>
+          <option value="Marzo">Marzo</option>
+          <option value="Abril">Abril</option>
+          <option value="Mayo">Mayo</option>
+          <option value="Junio">Junio</option>
+          <option value="Julio">Julio</option>
+          <option value="Agosto">Agosto</option>
+          <option value="Septiembre">Septiembre</option>
+          <option value="Octubre">Octubre</option>
+          <option value="Noviembre">Noviembre</option>
+          <option value="Diciembre">Diciembre</option>
+        </select>
+
+        <input type="number" id="anioNac" min="1920" max="2026" placeholder="Año" required style="flex: 1.2;">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono *</label>
+      <input type="tel" id="telefono" required placeholder="Ej. 6181234567">
+    </div>
+
+    <div class="form-group">
+      <label>Correo Electrónico (Opcional)</label>
+      <input type="email" id="email" placeholder="ejemplo@correo.com">
+    </div>
+
+    <!-- SECCIÓN DE REDES SOCIALES -->
+    <div class="section-title">Redes Sociales (Opcional)</div>
+
+    <div class="form-group">
+      <label>Facebook</label>
+      <input type="text" id="facebook" placeholder="¿Cómo te llamas en Facebook?">
+    </div>
+
+    <div class="form-group">
+      <label>Instagram</label>
+      <input type="text" id="instagram" placeholder="¿Cómo te llamas en Instagram?">
+    </div>
+
+    <div class="form-group">
+      <label>TikTok</label>
+      <input type="text" id="tiktok" placeholder="¿Cómo te llamas en TikTok?">
+    </div>
+
+    <div class="section-title">Ubicación</div>
+
+    <div class="form-group">
+      <label>Dirección (Calle, Número, Colonia/Fracc.) *</label>
+      <input type="text" id="direccion" required placeholder="Calle Hidalgo #123, Col. Centro">
+    </div>
+
+    <div class="form-group">
+      <label>Sección Electoral *</label>
+      <input type="text" id="seccionElectoral" required placeholder="Ej. 0123">
+    </div>
+
+    <div class="form-group">
+      <label>Municipio *</label>
+      <select id="municipio" required>
+        <option value="" disabled selected>-- Selecciona un municipio --</option>
+        <option value="Canatlán">Canatlán</option>
+        <option value="Canelas">Canelas</option>
+        <option value="Coneto de Comonfort">Coneto de Comonfort</option>
+        <option value="Cuencamé">Cuencamé</option>
+        <option value="Durango">Durango</option>
+        <option value="El Oro">El Oro</option>
+        <option value="General Simón Bolívar">General Simón Bolívar</option>
+        <option value="Gómez Palacio">Gómez Palacio</option>
+        <option value="Guadalupe Victoria">Guadalupe Victoria</option>
+        <option value="Guanaceví">Guanaceví</option>
+        <option value="Hidalgo">Hidalgo</option>
+        <option value="Indé">Indé</option>
+        <option value="Lerdo">Lerdo</option>
+        <option value="Mapimí">Mapimí</option>
+        <option value="Mezquital">Mezquital</option>
+        <option value="Nazas">Nazas</option>
+        <option value="Nombre de Dios">Nombre de Dios</option>
+        <option value="Nuevo Ideal">Nuevo Ideal</option>
+        <option value="Ocampo">Ocampo</option>
+        <option value="Otáez">Otáez</option>
+        <option value="Pánuco de Coronado">Pánuco de Coronado</option>
+        <option value="Peñón Blanco">Peñón Blanco</option>
+        <option value="Poanas">Poanas</option>
+        <option value="Pueblo Nuevo">Pueblo Nuevo</option>
+        <option value="Rodeo">Rodeo</option>
+        <option value="San Bernardo">San Bernardo</option>
+        <option value="San Dimas">San Dimas</option>
+        <option value="San Juan de Guadalupe">San Juan de Guadalupe</option>
+        <option value="San Juan del Río">San Juan del Río</option>
+        <option value="San Luis del Cordero">San Luis del Cordero</option>
+        <option value="San Pedro del Gallo">San Pedro del Gallo</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Santiago Papasquiaro">Santiago Papasquiaro</option>
+        <option value="Súchil">Súchil</option>
+        <option value="Tamazula">Tamazula</option>
+        <option value="Tepehuanes">Tepehuanes</option>
+        <option value="Tlahualilo">Tlahualilo</option>
+        <option value="Topia">Topia</option>
+        <option value="Vicente Guerrero">Vicente Guerrero</option>
+      </select>
+    </div>
+
+    <button type="submit" id="btnSubmit" class="btn-submit">REGISTRARSE</button>
+
+    <div id="mensajeExito">¡Registro completado con éxito!</div>
+
+    <!-- BOTONES DE REDES SOCIALES -->
+    <a href="https://whatsapp.com/channel/0029Vb9qTG02f3EBPHtCKL05" target="_blank" class="btn-social btn-whatsapp">
+      ¡Dale click y únete a nuestro canal de WhatsApp!
+    </a>
+
+    <a href="https://www.facebook.com/CDE.PRI.Durango" target="_blank" class="btn-social btn-facebook">
+      Síguenos en Facebook
+    </a>
+
+    <a href="https://www.instagram.com/pridurango/" target="_blank" class="btn-social btn-instagram">
+      Síguenos en Instagram
+    </a>
+
+    <a href="https://www.tiktok.com/@pri.durango" target="_blank" class="btn-social btn-tiktok">
+      Síguenos en TikTok
+    </a>
+
+    <a href="https://x.com/PRIEstatalDGO" target="_blank" class="btn-social btn-x">
+      Síguenos en X
+    </a>
+
+    <img src="LOGO INTEDI.png" alt="LOGO INTEDI" class="footer-logo">
+
+  </form>
+</div>
+
+<script>
+  // Reemplaza la URL por la URL de tu Web App de Google Apps Script cuando la tengas
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxmto-XmJwoXB-1migvuSNWkan9QPsj0cV4Z7vrSv4-TLNzBslsHVL8Apme8VfL9cem/exec';
+
+  const form = document.getElementById('regForm');
+  const mensajeExito = document.getElementById('mensajeExito');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const sector = document.getElementById('sector').value || 'N/A';
+    const nombreEvento = document.getElementById('nombreEvento').value.trim();
+    
+    const diaEv = document.getElementById('diaEvento').value.padStart(2, '0');
+    const mesEv = document.getElementById('mesEvento').value;
+    const anioEv = document.getElementById('anioEvento').value;
+    const fechaEvento = `${diaEv}/${mesEv}/${anioEv}`;
+
+    const nombres = document.getElementById('nombres').value.trim();
+    const paterno = document.getElementById('paterno').value.trim();
+    const materno = document.getElementById('materno').value.trim();
+
+    const diaNac = document.getElementById('diaNac').value.padStart(2, '0');
+    const mesNac = document.getElementById('mesNac').value;
+    const anioNac = document.getElementById('anioNac').value;
+    const fechaNacimiento = `${diaNac}/${mesNac}/${anioNac}`;
+
+    const telefono = document.getElementById('telefono').value.trim();
+    const email = document.getElementById('email').value.trim() || 'No proporcionado';
+    const facebook = document.getElementById('facebook').value.trim() || 'N/A';
+    const instagram = document.getElementById('instagram').value.trim() || 'N/A';
+    const tiktok = document.getElementById('tiktok').value.trim() || 'N/A';
+    const direccion = document.getElementById('direccion').value.trim();
+    const seccionElectoral = document.getElementById('seccionElectoral').value.trim();
+    const municipio = document.getElementById('municipio').value.trim();
+
+    const datosRegistro = {
+      sector: sector,
+      nombreEvento: nombreEvento,
+      fechaEvento: fechaEvento,
+      nombres: nombres,
+      paterno: paterno,
+      materno: materno,
+      fechaNacimiento: fechaNacimiento,
+      telefono: telefono,
+      email: email,
+      facebook: facebook,
+      instagram: instagram,
+      tiktok: tiktok,
+      direccion: direccion,
+      seccionElectoral: seccionElectoral,
+      municipio: municipio
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: JSON.stringify(datosRegistro)
+    })
+    .then(() => {
+      mensajeExito.style.display = 'block';
+      form.reset();
+      setTimeout(() => {
+        mensajeExito.style.display = 'none';
+      }, 4000);
+    })
+    .catch(err => {
+      console.error('Error enviando datos:', err);
+      alert('Hubo un error al enviar tu registro. Inténtalo de nuevo.');
+    });
+  });
+</script>
+</body>
+</html>
